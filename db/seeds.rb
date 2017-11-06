@@ -5,9 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-user = User.create(name: "小室", mail: "aaa@example.com")
-user = User.create(name: "永渕", mail: "bbb@example.com")
-user = User.create(name: "遠藤", mail: "ccc@example.com")
+user = User.create(name: "スズキ", mail: "aaa@example.com")
+user = User.create(name: "サトウ", mail: "bbb@example.com")
+user = User.create(name: "タナカ", mail: "ccc@example.com")
 
 Drink.create(menu: "エスプレッソ")
 Drink.create(menu: "エスプレッソラージ")
