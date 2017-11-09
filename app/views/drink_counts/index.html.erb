@@ -3,7 +3,21 @@
 <h1>ダッシュボード</h1>
 <h2>今日の日付は<%= Date.today %>です</h2>
 <div class="container">
+<%= form_for(@drinkcount) do |f| %>
+<div class="col-sm-3">
+<ul class="list-group">
+  <% @drinks.each do |drink| %>
+  <li class="list-group-item"><%= f.radio_button(:drink_id, drink.id, {:class => "btn btn-info"}) %><%= drink.menu %></li>
+  </ul>
+  <% end %>
+</div>
 
-    <%= render "user_list" %>
-
+<div class="col-sm-9">
+<ul class="list-group">
+<% @users.each do |user| %>
+<li class="list-group-item"><%= f.submit(user.name, :id => user.id, :user_id => user.id, :class => "btn btn-info") %><%= @drinkcounts.where(:user_id => user.id).count %></li>
+<% end %>
+</ul>
+<% end %>
+</div>
 </div>
