@@ -16,10 +16,10 @@
 </div>
 
 <div class="col-sm-9">
-<div class="btn-group">
-<% @users.each do |user| %>
-  <label class="btn col-sm-4"><%= f.submit(user.name, :id => user.id, :user_id => user.id, :class => "btn btn-lg btn-info") %>
-  <span class="lead">　　<%= @drinkcounts.where(:user_id => user.id).count %>回</span></label>
+<div class="list-inline">
+<% @users.each_with_index do |user,i| %>
+  <ol><label class="col-sm-2"><span class="lead"><%= f.submit(user.name, :id => user.id, :user_id => user.id, :class => "square_btn#{i%4}") %>
+  　　<%= @drinkcounts.where(:user_id => user.id).count %>回</span></label></ol>
 <% end %>
 </div>
 <% end %>
