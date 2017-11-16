@@ -16,10 +16,18 @@
 </div>
 
 <div class="col-sm-9">
-<div class="list-inline">
+<div class="list-group">
 <% @users.each_with_index do |user,i| %>
-  <ol><label class="col-sm-2"><span class="lead"><%= f.submit(user.name, :id => user.id, :user_id => user.id, :class => "square_btn#{i%4}") %>
-  　　<%= @drinkcounts.where(:user_id => user.id).count %>回</span></label></ol>
+
+    <% if i%2 == 0 %>
+        <ul class="list-inline list-group">
+        <li class="list-group-item"><label><span class="lead"><%= f.submit(user.name, :id => user.id, :user_id => user.id, :class => "square_btn#{i%4}") %>
+  　　    <%= @drinkcounts.where(:user_id => user.id).count %>回</span><label></li>
+  　<% else %>
+  　     <li class="list-group-item"><label><span class="lead"><%= f.submit(user.name, :id => user.id, :user_id => user.id, :class => "square_btn#{i%4}") %>
+  　　    <%= @drinkcounts.where(:user_id => user.id).count %>回</span><label></li>
+        </ul>
+    <% end %>
 <% end %>
 </div>
 <% end %>
