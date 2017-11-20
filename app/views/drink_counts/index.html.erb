@@ -1,7 +1,16 @@
-<%= render "header" %>
+<%= render "shared/header" %>
+<br><br><br><br>
 
-<h1>ダッシュボード</h1>
-<h2>Today <%= Date.today.strftime("%Y/%m/%d")%></h2>
+<ul class="nav nav-tabs nav-justified">
+  <li class="active"><a href="#tab1" data-toggle="tab">Current</a></li>
+  <li><a href="#tab2" data-toggle="tab">Statictics</a></li>
+
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="tab1">
+
+
 <%= form_for(@drinkcount) do |f| %>
 <div class="col-sm-3 panel panel-default">
 <div class="btn-group btn-group-vertical" data-toggle="buttons">
@@ -35,3 +44,52 @@
 <% end %>
 </table>
 </div>
+</div>
+
+
+
+<div class="tab-pane" id="tab2">
+<ul>
+<li>ランキング</li>
+<% @drinkranks.each do |k,v| %>
+  <li><%= Drink.find(k).menu %> <%= v %>杯</li>
+<% end %>
+</ul>
+  <svg id="chart"></svg>
+</div>
+
+</div>
+<script>
+// 表示サイズを設定
+var size = {
+  width: 600,
+  height:600
+};
+
+// 円グラフの表示データ
+var data = [
+  60,
+  30,
+  10
+];
+
+// d3用の変数
+var svg   = d3.select("#chart"),
+    pie   = d3.pie().value(function(d){ return d; }),
+    arc = d3.arc().innerRadius(0).outerRadius(100).startAngle(0).endAngle(Math.PI / 2);
+
+arc();
+// グループの作成
+var g = svg.selectAll(".arc")
+  .data(pie(data))
+  .enter()
+  .append("g")
+    .attr("transform", "translate(" + (size.width / 2) + "," + (size.height / 2) + ")")
+    .attr("class", "arc");
+
+// 円弧の作成
+g.append("path")
+  .attr("d", arc)
+  .attr("stroke", "white");
+
+</script>

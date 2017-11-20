@@ -6,9 +6,10 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
+    <h1 class="navbar-brand">Today <%= Date.today.strftime("%Y/%m/%d")%></h1>
   </div>
   <div id="gnavi" class="collapse navbar-collapse">
-    <ul class="nav navbar-nav">
+    <ul class="nav navbar-nav navbar-right">
       <li class="btn col-sm-4"><%= link_to 'TOP', root_path %></li>
       <li class="btn col-sm-4"><%= link_to "ユーザー登録", users_path %></li>
     </ul>

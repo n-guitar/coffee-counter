@@ -3,5 +3,7 @@ Rails.application.routes.draw do
   root to: "drink_counts#index"
   resources "drink_counts" , only: [:new, :create, :edit, :update, :destroy]
   resources "users"
+  resources "dashboards", only: [:index]
+  get '/drink_counts/index2', to: "drink_counts#index2"
 
 end
