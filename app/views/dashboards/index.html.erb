@@ -35,8 +35,9 @@ var size = {
 };
 
 // 円グラフの表示データ
-var data = gon.drinkranks_count
+var data_value = gon.drinkranks_count
 var data_label = gon.drinkranks_name
+var data = gon.drinkranks
 var color = d3.scale.category10();
 // d3用の変数
 var win   = d3.select(window), //←リサイズイベントの設定に使用します
@@ -54,7 +55,7 @@ function render(){
 
   // グループの作成
   var g = svg.selectAll(".arc")
-    .data(pie(data))
+    .data(pie(data_value))
     .enter()
     .append("g")
       .attr("class", "arc");

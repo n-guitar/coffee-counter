@@ -144,3 +144,17 @@ box-shadow: none;
     box-shadow: inset 0 0 2px rgba(128, 128, 128, 0.1);
     transform: translateY(2px);
 }
+#bg-coffee {
+    background-image: url(/images/coffee-flower.jpg);
+}
+body {
+    margin: 0;
+    background:
+      #fff
+      url(/images/coffee-flower.jpg)
+      no-repeat
+      fixed
+      center center;
+    background-size: cover;
+   
+  }

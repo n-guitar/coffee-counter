@@ -1,95 +1,44 @@
+
+
 <%= render "shared/header" %>
-<br><br><br><br>
 
-<ul class="nav nav-tabs nav-justified">
-  <li class="active"><a href="#tab1" data-toggle="tab">Current</a></li>
-  <li><a href="#tab2" data-toggle="tab">Statictics</a></li>
-
-</ul>
-
-<div class="tab-content">
-  <div class="tab-pane active" id="tab1">
-
-
+<br><br><br><br><br>
 <%= form_for(@drinkcount) do |f| %>
 <div class="col-sm-3 panel panel-default">
 <div class="btn-group btn-group-vertical" data-toggle="buttons">
   <% @drinks.each_with_index do |drink,i| %>
     <% if i == 0 %>
      <label class="btn"><%= f.radio_button(:drink_id, drink.id,{:checked => true, :class => "btn-lg fa fa-circle-o fa-2x"}) %><span class="lead"><%= drink.menu %></span></label>
+     <br>
    <% else %>
       <label class="btn"><%= f.radio_button(:drink_id, drink.id, {:class => "btn-lg fa fa-circle-o fa-2x"}) %><span class="lead"><%= drink.menu %></span></label>
+      <br>
    <% end %>
   <% end %>
 </div>
 </div>
 
 <div class="col-sm-9">
-<table class="table">
-<% @users.each_with_index do |user,i| %>
-    <% if i%3 == 0 %>
-        <tr class="">
-        <td class=""><label><span class="lead"><%= f.submit(user.name, :id => user.id, :user_id => user.id, :class => "square_btn#{i%4}") %>
-  　　    <%= @drinkcounts.where(:user_id => user.id).count %>回</span></label></td>
-  　<% elsif i%3 == 1 %>
-  　     <td class=""><label><span class="lead"><%= f.submit(user.name, :id => user.id, :user_id => user.id, :class => "square_btn#{i%4}") %>
-  　　    <%= @drinkcounts.where(:user_id => user.id).count %>回</span></label></td>
-  　<% else %>
-  　     <td class=""><label><span class="lead"><%= f.submit(user.name, :id => user.id, :user_id => user.id, :class => "square_btn#{i%4}") %>
-  　　    <%= @drinkcounts.where(:user_id => user.id).count %>回</span></label></td>
-        </tr>
-    <% end %>
-<% end %>
+  <table class="table">
+  <% @users.each_with_index do |user,i| %>
+      <% if i%3 == 0 %>
+          <tr class="">
+          <td class=""><label><span class="lead"><%= f.submit(user.name, :id => user.id, :user_id => user.id, :class => "square_btn#{i%4}") %>
+    　　    <%= @drinkcounts.where(:user_id => user.id).count %>回</span></label></td>
+    　<% elsif i%3 == 1 %>
+    　     <td class=""><label><span class="lead"><%= f.submit(user.name, :id => user.id, :user_id => user.id, :class => "square_btn#{i%4}") %>
+    　　    <%= @drinkcounts.where(:user_id => user.id).count %>回</span></label></td>
+    　<% else %>
+    　     <td class=""><label><span class="lead"><%= f.submit(user.name, :id => user.id, :user_id => user.id, :class => "square_btn#{i%4}") %>
+    　　    <%= @drinkcounts.where(:user_id => user.id).count %>回</span></label></td>
+          </tr>
+      <% end %>
+  <% end %>
+  <% end %>
+  </table>
 </div>
-<% end %>
-</table>
-</div>
-</div>
-
-
-
-<div class="tab-pane" id="tab2">
-<ul>
-<li>ランキング</li>
-<% @drinkranks.each do |k,v| %>
-  <li><%= Drink.find(k).menu %> <%= v %>杯</li>
-<% end %>
-</ul>
-  <svg id="chart"></svg>
 </div>
 
-</div>
-<script>
-// 表示サイズを設定
-var size = {
-  width: 600,
-  height:600
-};
 
-// 円グラフの表示データ
-var data = [
-  60,
-  30,
-  10
-];
 
-// d3用の変数
-var svg   = d3.select("#chart"),
-    pie   = d3.pie().value(function(d){ return d; }),
-    arc = d3.arc().innerRadius(0).outerRadius(100).startAngle(0).endAngle(Math.PI / 2);
 
-arc();
-// グループの作成
-var g = svg.selectAll(".arc")
-  .data(pie(data))
-  .enter()
-  .append("g")
-    .attr("transform", "translate(" + (size.width / 2) + "," + (size.height / 2) + ")")
-    .attr("class", "arc");
-
-// 円弧の作成
-g.append("path")
-  .attr("d", arc)
-  .attr("stroke", "white");
-
-</script>
