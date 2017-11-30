@@ -1,3 +1,25 @@
 // Place all the styles related to the DrinkCounts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#piechart {
+  height: 500px;
+  position: relative;
+  background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%);
+
+}
+svg {
+    width: 100%;
+    height: 100%;
+}
+
+path.slice{
+    stroke-width:2px;
+}
+
+polyline{
+    opacity: .3;
+    stroke: #000;
+    stroke-width: 2px;
+    fill: none;
+}

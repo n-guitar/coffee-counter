@@ -1,37 +1,49 @@
-<%= render "header" %>
 
-<h1>ダッシュボード</h1>
-<h2>Today <%= Date.today.strftime("%Y/%m/%d")%></h2>
+
+<%= render "shared/header" %>
+
+<br><br><br><br><br>
 <%= form_for(@drinkcount) do |f| %>
-<div class="col-sm-3 panel panel-default">
+<div class="col-sm-3 clear_only_back panel">
 <div class="btn-group btn-group-vertical" data-toggle="buttons">
   <% @drinks.each_with_index do |drink,i| %>
     <% if i == 0 %>
      <label class="btn"><%= f.radio_button(:drink_id, drink.id,{:checked => true, :class => "btn-lg fa fa-circle-o fa-2x"}) %><span class="lead"><%= drink.menu %></span></label>
+     <br>
    <% else %>
       <label class="btn"><%= f.radio_button(:drink_id, drink.id, {:class => "btn-lg fa fa-circle-o fa-2x"}) %><span class="lead"><%= drink.menu %></span></label>
+      <br>
    <% end %>
   <% end %>
 </div>
 </div>
 
-<div class="col-sm-9">
-<table class="table">
-<% @users.each_with_index do |user,i| %>
-    <% if i%3 == 0 %>
-        <tr class="">
-        <td class=""><label><span class="lead"><%= f.submit(user.name, :id => user.id, :user_id => user.id, :class => "square_btn#{i%4}") %>
-  　　    <%= @drinkcounts.where(:user_id => user.id).count %>回</span></label></td>
-  　<% elsif i%3 == 1 %>
-  　     <td class=""><label><span class="lead"><%= f.submit(user.name, :id => user.id, :user_id => user.id, :class => "square_btn#{i%4}") %>
-  　　    <%= @drinkcounts.where(:user_id => user.id).count %>回</span></label></td>
-  　<% else %>
-  　     <td class=""><label><span class="lead"><%= f.submit(user.name, :id => user.id, :user_id => user.id, :class => "square_btn#{i%4}") %>
-  　　    <%= @drinkcounts.where(:user_id => user.id).count %>回</span></label></td>
-        </tr>
-    <% end %>
-<% end %>
+<div class="col-sm-9 clear_only_back">
+  <table class="table">
+  <% @users.each_with_index do |user,i| %>
+      <% if i%3 == 0 %>
+          <tr class="">
+          <td class=""><label><span class="lead"><%= f.submit(user.name, :id => user.id, :user_id => user.id, :class => "square_btn#{i%4}") %>
+    　　    <%= @drinkcounts.where(:user_id => user.id).count %>回</span></label></td>
+    　<% elsif i%3 == 1 %>
+    　     <td class=""><label><span class="lead"><%= f.submit(user.name, :id => user.id, :user_id => user.id, :class => "square_btn#{i%4}") %>
+    　　    <%= @drinkcounts.where(:user_id => user.id).count %>回</span></label></td>
+    　<% else %>
+    　     <td class=""><label><span class="lead"><%= f.submit(user.name, :id => user.id, :user_id => user.id, :class => "square_btn#{i%4}") %>
+    　　    <%= @drinkcounts.where(:user_id => user.id).count %>回</span></label></td>
+          </tr>
+      <% end %>
+  <% end %>
+  <% end %>
+  </table>
 </div>
-<% end %>
-</table>
 </div>
+<script>
+  $(function(){
+    $('body').ripples();
+  })
+
+</script>
+
+
+
