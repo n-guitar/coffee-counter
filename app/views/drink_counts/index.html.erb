@@ -4,7 +4,7 @@
 
 <br><br><br><br><br>
 <%= form_for(@drinkcount) do |f| %>
-<div class="col-sm-3 panel panel-default">
+<div class="col-sm-3 clear_only_back panel">
 <div class="btn-group btn-group-vertical" data-toggle="buttons">
   <% @drinks.each_with_index do |drink,i| %>
     <% if i == 0 %>
@@ -18,7 +18,7 @@
 </div>
 </div>
 
-<div class="col-sm-9">
+<div class="col-sm-9 clear_only_back">
   <table class="table">
   <% @users.each_with_index do |user,i| %>
       <% if i%3 == 0 %>
@@ -38,7 +38,12 @@
   </table>
 </div>
 </div>
+<script>
+  $(function(){
+    $('body').ripples();
+  })
 
+</script>
 
 
 

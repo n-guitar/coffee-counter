@@ -1,8 +1,8 @@
 <%= render "shared/header" %>
 <br><br><br><br><br>
-<div class="">
+<div class="col-sm-6">
 <ul>
-<li>ランキング</li>
+<h3>過去30日のジャンル集計</h3>
 <% @drinkranks.each do |k,v| %>
   <li><%= Drink.find(k).menu %> <%= v %>杯</li>
 <% end %>
@@ -10,10 +10,26 @@
 
 <svg id="chart"></svg>
 </div>
+<div class="col-sm-6">
+  <h3>過去30日のカウント</h3>
+  <table class="table table-striped">
+<tr>
+  <td>Name</td>
+  <td>カウント</td>
+</tr>    
+<% @userdrinkcounts.each do |k,v| %>
+<tr>
+  <td><%= User.find(k).name %></td>
+  <td><%= v %>杯</td>
+</tr>
+<% end %>
+</table>
+</div>
+
 <style>
 
 svg {
-  width:50%;
+  width:100%;
 }
 path {
   /*fill:#333;*/
@@ -30,8 +46,8 @@ text {
 // サイズを設定
 // ウィンドウサイズによって可変する
 var size = {
-  width : 600,
-  height: 600
+  width : 450,
+  height: 450
 };
 
 // 円グラフの表示データ
