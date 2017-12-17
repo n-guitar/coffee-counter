@@ -12,7 +12,6 @@ RSpec.describe Drink, type: :model do
     drink.menu = nil
     expect(drink.save).to be_falsey 
   end
-
   it "同じ名前のメニューは登録できないこと" do
     Drink.create(menu: "エスプレッソ")
     drink = Drink.new
