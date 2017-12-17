@@ -47,6 +47,14 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem "pry-rails"
   gem "annotate"
+  gem "rspec-rails"
+  gem "factory_girl_rails"
+end
+group :test do
+  gem "faker"
+  gem "database_cleaner"
+  gem "launchy"
+  gem "selenium-webdriver"
 end
 
 group :development do
